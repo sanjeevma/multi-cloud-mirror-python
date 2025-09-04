@@ -240,7 +240,7 @@ az account show
 - GAR: Ensure `artifactregistry.repositories.*` roles
 - ACR: Ensure `AcrPush` role
 
-### Debug Mode
+### 🐛 Debug Mode
 
 Enable debug logging to see detailed execution:
 
@@ -248,7 +248,7 @@ Enable debug logging to see detailed execution:
 python main.py -d
 ```
 
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create feature branch: `git checkout -b feature-name`
@@ -257,12 +257,12 @@ python main.py -d
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
-## License
+## 📄 License
 
 MIT License - see [LICENSE](LICENSE) file.
 
-## Author
+## 👨‍💻 Author
 
 **Sanjeev Maharjan**
-Email: me@sanjeev.au
-GitHub: [@sanjeevma](https://github.com/sanjeevma)
+📧 Email: me@sanjeev.au
+🐙 GitHub: [@sanjeevma](https://github.com/sanjeevma)
