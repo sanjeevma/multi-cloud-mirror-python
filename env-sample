@@ -1,0 +1,4 @@
+AWS_REGION=us-east-1
+ECR_MIRROR_AWS_REGIONS=ap-southeast-2,us-east-1
+GCP_PROJECT_ID=my-project
+JFROG_TOKEN=xyz123

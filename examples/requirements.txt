@@ -1,0 +1,4 @@
+click>=8.0.0
+python-dotenv>=0.19.0
+asyncio-throttle>=1.0.2
+aiofiles>=22.1.0

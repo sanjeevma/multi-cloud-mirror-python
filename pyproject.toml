@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "multi-cloud-mirror"
+version = "1.0.0"
+description = "Multi-cloud container image mirroring tool"
+authors = [
+  {name = "Sanjeev Maharjan", email = "me@sanjeev.au"}
+]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Build Tools",
+  "Topic :: System :: Archiving :: Mirroring",
+]
+keywords = ["docker", "container", "registry", "aws", "gcp", "azure", "mirror"]
+dependencies = [
+  "click>=8.0.0",
+  "python-dotenv>=0.19.0",
+  "asyncio-throttle>=1.0.2",
+  "aiofiles>=22.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0.0",
+  "pytest-asyncio>=0.21.0",
+  "black>=22.0.0",
+  "flake8>=5.0.0",
+  "mypy>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/sanjeevmaharjan/multi-cloud-mirror"
+Repository = "https://github.com/sanjeevmaharjan/multi-cloud-mirror"
+Issues = "https://github.com/sanjeevmaharjan/multi-cloud-mirror/issues"
+
+[project.scripts]
+multi-cloud-mirror = "main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["core*", "registries*", "utils*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py38"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"

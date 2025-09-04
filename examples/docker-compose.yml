@@ -1,0 +1,72 @@
+# examples/docker-compose.yml
+# Demo setup for multi-cloud mirror
+
+version: '3.8'
+
+services:
+  multi-cloud-mirror:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: multi-cloud-mirror
+    env_file:
+      - ../.env
+    volumes:
+      # Mount config directory
+      - ../config:/app/config:ro
+
+      # Mount cloud CLI configs (if using host auth)
+      - ~/.aws:/root/.aws:ro
+      - ~/.config/gcloud:/root/.config/gcloud:ro
+      - ~/.azure:/root/.azure:ro
+      - ~/.docker:/root/.docker:ro
+
+      # Mount custom image lists
+      - ../examples/example-list.txt:/app/config/example-list.txt:ro
+
+    # Override default command
+    command: ["python", "main.py", "-f", "config/example-list.txt", "-j", "5", "--validate"]
+
+    # Environment variables can override .env
+    environment:
+      - DEBUG=1
+      - MAX_PARALLEL_JOBS=5
+
+    # Network mode for cloud CLI tools
+    network_mode: host
+
+    # Restart policy
+    restart: "no"
+
+  # Optional: Local registry for testing
+  local-registry:
+    image: registry:2
+    container_name: local-registry
+    ports:
+      - "5000:5000"
+    volumes:
+      - registry_data:/var/lib/registry
+    environment:
+      REGISTRY_STORAGE_DELETE_ENABLED: "true"
+      REGISTRY_HTTP_ADDR: "0.0.0.0:5000"
+
+  # Optional: Registry UI
+  registry-ui:
+    image: joxit/docker-registry-ui:2.5.0
+    container_name: registry-ui
+    ports:
+      - "8080:80"
+    environment:
+      - SINGLE_REGISTRY=true
+      - REGISTRY_TITLE=Local Registry
+      - DELETE_IMAGES=true
+      - SHOW_CONTENT_DIGEST=true
+      - NGINX_PROXY_PASS_URL=http://local-registry:5000
+      - SHOW_CATALOG_NB_TAGS=true
+      - CATALOG_MIN_BRANCHES=1
+      - CATALOG_MAX_BRANCHES=1
+    depends_on:
+      - local-registry
+
+volumes:
+  registry_data:

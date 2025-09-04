@@ -1,0 +1,45 @@
+# examples/example-list.txt
+# Format: DESTINATIONS SOURCE_IMAGE
+# Destinations: ECR, GAR, ACR, JFROG, DOCR (comma-separated)
+
+# Popular base images
+ECR,GAR     docker.io/library/nginx:1.25
+ECR,GAR     docker.io/library/redis:7.2
+ECR         docker.io/library/postgres:15
+GAR,ACR     docker.io/library/mysql:8.0
+
+# Monitoring stack
+ECR,GAR,ACR docker.io/prom/prometheus:v2.47.0
+ECR,GAR     docker.io/grafana/grafana:10.1.0
+GAR,JFROG   docker.io/prom/node-exporter:v1.6.1
+
+# Container runtime
+ECR         k8s.gcr.io/pause:3.9
+GAR         registry.k8s.io/kube-apiserver:v1.28.0
+
+# Development tools
+JFROG,DOCR  docker.io/library/node:18-alpine
+ACR,DOCR    docker.io/library/python:3.11-slim
+
+# Security scanning
+ECR,GAR     docker.io/aquasec/trivy:0.45.0
+
+# Example with GitHub Container Registry
+ECR         ghcr.io/helm/helm:v3.13.0
+
+# Example with Quay
+GAR,ACR     quay.io/coreos/etcd:v3.5.9
+
+# Custom application (replace with your own)
+# ECR,GAR,ACR your-registry.com/your-app:v1.2.3
+
+# Comments and empty lines are ignored
+# Use -- for section separators
+
+-- Kubernetes Images --
+ECR,GAR     registry.k8s.io/coredns/coredns:v1.10.1
+ECR         registry.k8s.io/etcd:3.5.9-0
+
+-- Application Images --
+JFROG       docker.io/library/traefik:v3.0
+DOCR        docker.io/library/caddy:2.7-alpine
