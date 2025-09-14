@@ -1,6 +1,6 @@
 # Multi-Cloud Container Mirror
 
-🚀 A Python tool for mirroring container images across multiple cloud registries simultaneously.
+🚀 A Python tool for mirroring container images across multiple cloud registries simultaneously, Supports all major cloud
 
 ## Features
 

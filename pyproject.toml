@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "multi-cloud-mirror"
+name = "multi-cloud-mirror-python"
 version = "1.0.0"
 description = "Multi-cloud container image mirroring tool"
 authors = [
@@ -44,12 +44,12 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/sanjeevmaharjan/multi-cloud-mirror"
-Repository = "https://github.com/sanjeevmaharjan/multi-cloud-mirror"
-Issues = "https://github.com/sanjeevmaharjan/multi-cloud-mirror/issues"
+Homepage = "https://github.com/sanjeevma/multi-cloud-mirror-python"
+Repository = "https://github.com/sanjeevma/multi-cloud-mirror-python"
+Issues = "https://github.com/sanjeevma/multi-cloud-mirror-python/issues"
 
 [project.scripts]
-multi-cloud-mirror = "main:main"
+multi-cloud-mirror-python = "main:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
